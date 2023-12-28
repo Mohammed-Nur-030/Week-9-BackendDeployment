@@ -19,10 +19,6 @@ jobs:
       run: |
         echo "$SSH_PRIVATE_KEY" > keyfile
         chmod 600 keyfile
-        ssh -i keyfile ubuntu@ec2-3-25-92-34.ap-southeast-2.compute.amazonaws.com	  <<EOF
-        cd week-9
-        git pull origin master
-        cd server  
-        pm2 kill  
-        pm2 start index.js
-EOF
+        ssh -t -i keyfile ubuntu@ec2-3-25-92-34.ap-southeast-2.compute.amazonaws.com "sudo bash ~/deploy.sh"
+
+

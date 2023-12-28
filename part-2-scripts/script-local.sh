@@ -1,1 +1,1 @@
-ssh -t -i "cert-file.cer" ubuntu@ec2-url  "sudo bash ~/deploy.sh"
+ssh -t -i "week-9-app.pem" ubuntu@ec2-3-25-92-34.ap-southeast-2.compute.amazonaws.com	  "source ~/deploy.sh"
