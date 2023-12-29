@@ -25,5 +25,5 @@ jobs:
       - name: SSH and deploy
         run: |
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa \
-              ubuntu@ec2-3-104-64-52.ap-southeast-2.compute.amazonaws.com \
+              ubuntu@ec2-54-206-41-52.ap-southeast-2.compute.amazonaws.com \
               "sudo bash ~/deploy.sh"
