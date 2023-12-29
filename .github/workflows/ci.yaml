@@ -3,21 +3,21 @@ name: Deploy
 on:
   push:
     branches:
-      - master # or the branch you want to deploy from
- 
+      - master
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: SSH and deploy
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      run: |
-        echo "$SSH_PRIVATE_KEY" > keyfile
-        ssh -t -i keyfile ubuntu@ec2-3-25-92-34.ap-southeast-2.compute.amazonaws.com "sudo bash ~/deploy.sh"
+      - name: Create SSH key file
+        run: echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
 
+      - name: Add GitHub.com to known hosts
+        run: ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 
+      - name: SSH and deploy
+        run: ssh -i ~/.ssh/id_rsa ubuntu@ec2-3-25-92-34.ap-southeast-2.compute.amazonaws.com "sudo bash ~/deploy.sh"
