@@ -12,7 +12,7 @@ app.use(express.json());
 app.use("/admin", adminRouter)
 app.use("/user", userRouter)
 app.get("/",(req,res)=>res.json(
-    `<h1>HelloWorld</h1>`
+    `This is the Change is made and this was updated on website through github CD`
     ));
 
 
