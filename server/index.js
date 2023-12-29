@@ -22,4 +22,4 @@ app.get("/",(req,res)=>res.json(
 // DONT MISUSE THIS THANKYOU!!
 mongoose.connect('mongodb+srv://xyznur786:aKcPsKhPFL0A3ZDK@cluster0.ao6uktc.mongodb.net/week-9', { useNewUrlParser: true, useUnifiedTopology: true, dbName: "courses" });
 
-app.listen(80, () => console.log('Server running on port 3000'));
+app.listen(3000, () => console.log('Server running on port 3000'));
