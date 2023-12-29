@@ -14,6 +14,7 @@ app.use("/user", userRouter)
 app.get("/",(req,res)=>res.json(
     `This is the Change is made and this was updated on website through github CD.............
     And After Some Erros and changing the INstance and Modifying the code for the New Url i could do it
+    Changing the INdex and Push it to github and doing nothing...Github CD is going it..
     `
     ));
 
