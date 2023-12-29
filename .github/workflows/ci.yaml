@@ -17,10 +17,13 @@ jobs:
         run: mkdir -p ~/.ssh
 
       - name: Create SSH key file
-        run: echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+        run: echo -e "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
 
       - name: Add GitHub.com to known hosts
         run: ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 
       - name: SSH and deploy
-        run: ssh -i  secrets.SSH_PRIVATE_KEY  ubuntu@ec2-3-104-64-52.ap-southeast-2.compute.amazonaws.com "sudo bash ~/deploy.sh"
+        run: |
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa \
+              ubuntu@ec2-3-104-64-52.ap-southeast-2.compute.amazonaws.com \
+              "sudo bash ~/deploy.sh"
